@@ -398,11 +398,11 @@ cp libs/sky130_fd_sc_hd__* ~/OpenLane/designs/picorv32a/src/
 The OpenLANE configuration was updated by modifying the **config.tcl** file to include the newly generated LEF and Liberty libraries:
 
 ```tcl
-set ::env(EXTRA_LEFS)  ...
-set ::env(LIB_SYNTH)   ...
-set ::env(LIB_FASTEST) ...
-set ::env(LIB_SLOWEST) ...
-set ::env(LIB_TYPICAL) ...
+set ::env(LIB_SYNTH)      "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_FASTEST)    "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_SLOWEST)    "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_TYPICAL)    "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(EXTRA_LEFS)     [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
 ```
 
 This allowed OpenLANE to recognize the custom inverter as part of the standard cell library during synthesis and physical implementation.
